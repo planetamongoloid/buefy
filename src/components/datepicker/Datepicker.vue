@@ -87,6 +87,7 @@
                     :focused="focusedDateData"
                     :disabled="disabled"
                     :unselectable-dates="unselectableDates"
+                    :oneselectable-dates="oneselectableDates"
                     @close="$refs.dropdown.isActive = false">
                 </b-datepicker-table>
 
@@ -211,6 +212,7 @@
                 default: false
             },
             unselectableDates: Array,
+            oneselectableDates: Array,
             dateFormatter: {
                 type: Function,
                 default: (date) => {

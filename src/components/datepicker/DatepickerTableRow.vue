@@ -39,6 +39,7 @@
             minDate: Date,
             maxDate: Date,
             disabled: Boolean,
+            oneselectableDates: Array,
             unselectableDates: Array
         },
         methods: {
@@ -57,17 +58,36 @@
                     validity.push(day <= this.maxDate)
                 }
 
+                if (day.getDay() === 0 || day.getDay() === 6){
+                    validity.push(false)   
+                }
+
                 validity.push(day.getMonth() === this.month)
 
                 if (this.unselectableDates) {
                     for (let i = 0; i < this.unselectableDates.length; i++) {
-                        const disabledDate = this.unselectableDates[i]
+                        let disabledDate = this.unselectableDates[i]
                         validity.push((day.getDate() !== disabledDate.getDate() ||
                             day.getFullYear() !== disabledDate.getFullYear() ||
                             day.getMonth() !== disabledDate.getMonth()))
                     }
                 }
 
+                return validity.indexOf(false) < 0
+            },
+            oneDayselectableDate(day) {
+                const validity = []
+
+                validity.push(day.getMonth() === this.month)
+
+                if (this.oneselectableDates) {
+                    for (let i = 0; i < this.oneselectableDates.length; i++) {
+                        let disabledDate = this.oneselectableDates[i]
+                        validity.push((day.getDate() !== disabledDate.getDate() ||
+                            day.getFullYear() !== disabledDate.getFullYear() ||
+                            day.getMonth() !== disabledDate.getMonth()))
+                    }
+                }
                 return validity.indexOf(false) < 0
             },
 
@@ -100,6 +120,7 @@
                 return {
                     'is-selected': dateMatch(day, this.selectedDate),
                     'is-today': dateMatch(day, new Date()),
+                    'is-fullday': this.oneDayselectableDate(day) && !this.disabled,
                     'is-selectable': this.selectableDate(day) && !this.disabled,
                     'is-unselectable': !this.selectableDate(day) || this.disabled
                 }

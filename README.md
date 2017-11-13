@@ -1,5 +1,7 @@
 # Buefy
 
+He modificado esto para que funcione en guerrilla cooking de Andtonic. He añadido fechas para los dias que solo esta ocupado medio día y he quitado los fines de semana.
+
 [![npm](https://img.shields.io/npm/v/buefy.svg)]()
 [![npm](https://img.shields.io/npm/dt/buefy.svg)]()
 [![npm](https://img.shields.io/npm/l/buefy.svg)]()

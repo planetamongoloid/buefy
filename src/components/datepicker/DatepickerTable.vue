@@ -17,6 +17,7 @@
                 :min-date="minDate"
                 :max-date="maxDate"
                 :disabled="disabled"
+                :oneselectable-dates="oneselectableDates"
                 :unselectable-dates="unselectableDates"
                 @select="updateSelectedDate">
             </b-datepicker-table-row>
@@ -41,6 +42,7 @@
             maxDate: Date,
             focused: Object,
             disabled: Boolean,
+            oneselectableDates: Array,
             unselectableDates: Array
         },
         computed: {
